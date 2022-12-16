@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/03f847e5d1.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js%22%3E"></script>
+    <link rel="icon" type="image/x-icon" href="icons8-registered-trademark-50.png">
+    <title> YOUR SUBJECTS </title>
+    <style>
+        body {
+            background-color: #1e1e1c;
+            color: #fff;
+        }
+
+        .txt {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="txt">
+            <h2>ใบแสดงผลการศึกษา</h2>
+        </div>
+        <div class="col-8 mb-3 row">
+            <label for="staticName" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control-plaintext text-white" id="staticName"
+                    value="Miss Rawiporn Samorit">
+            </div>
+        </div>
+        <div class="col-8 mb-3 row">
+            <label for="staticBirth" class="col-sm-2 col-form-label">Date of Birth</label>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control-plaintext text-white" id="staticBirth"
+                    value="March 27, 2002">
+            </div>
+        </div>
+        <div class="col-8 mb-3 row">
+            <label for="staticId" class="col-sm-2 col-form-label">Student ID</label>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control-plaintext text-white" id="staticId" value="63070148">
+            </div>
+        </div>
+        <div class="col-8 mb-3 row">
+            <label for="staticAd" class="col-sm-2 col-form-label">Date of Admission</label>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control-plaintext text-white" id="staticAd" value="2020">
+            </div>
+        </div>
+        <div class="col-8 mb-3 row">
+            <label for="staticGrad" class="col-sm-2 col-form-label">Date of Graduation</label>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control-plaintext text-white" id="staticGrad" value="N/A">
+            </div>
+        </div>
+        <div class="col-8 mb-3 row">
+            <label for="staticDegree" class="col-sm-2 col-form-label">Degree</label>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control-plaintext text-white" id="staticDegree"
+                    value="Bachelor of Science">
+            </div>
+        </div>
+        <div class="col-8 mb-3 row">
+            <label for="staticMajor" class="col-sm-2 col-form-label">Major</label>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control-plaintext text-white" id="staticMajor"
+                    value="Information Technology">
+            </div>
+        </div>
+        <div class="table-group">
+            <table class="table table-dark table-borderless">
+                <thead>
+                    <tr>
+                        <th scope="col">COURSE TITLE</th>
+                        <th scope="col">CREDIT</th>
+                        <th scope="col">GRADE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1st Semester, Year, 2020-2021 (1/2563)</th>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td scope="row">06015789 sop</td>
+                        <td>3</td>
+                        <td>D</td>
+                    </tr>
+                    <tr>
+                        <td scope="row">06015789 sop</td>
+                        <td>3</td>
+                        <td>D</td>
+                    </tr>
+                    <tr>
+                        <td scope="row">06015789 sop</td>
+                        <td>3</td>
+                        <td>D</td>
+                    </tr>
+                    <tr>
+                        <td scope="row">06015789 sop</td>
+                        <td>3</td>
+                        <td>D</td>
+                    </tr>
+                    <tr>
+                        <td scope="row">06015789 sop</td>
+                        <td>3</td>
+                        <td>D</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">GPS: 2.80 GPA: 2.80</th>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-12 mb-3 row">
+            <label for="staticTotal" class="col-sm-2 col-form-label">Total number of credit earned:</label>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control-plaintext text-white" id="staticTotal" value="75">
+            </div>
+        </div>
+        <div class="col-12 mb-3 row">
+            <label for="staticCu" class="col-sm-2 col-form-label">Cumulative GPA:</label>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control-plaintext text-white" id="staticCu" value="2.83">
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            name: "Paper",
+        },
+        methods: {
+
+        }
+    })
+</script>
+
+</html>
