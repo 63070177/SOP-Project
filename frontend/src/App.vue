@@ -3,7 +3,7 @@
   <div id="app">
     <div class="header">
       <img class="logo" src="./assets/register-icon.svg" width="30px" height="30px" />
-      <h2 style="display: inline-block;">PAPERWORK</h2>
+      <h2 style="display: inline-block;">Hansa School</h2>
     </div>
     <router-view :key="$route.fullPath" />
   </div>
