@@ -50,13 +50,17 @@
                 <h2 class="block is-size-3" style="margin-top: 20px;">รายวิชาที่สอน</h2>
                 <table style="width:100%; color: #fff;">
                     <tr>
-                        <th class="is-size-5" style="color:#fff;">รหัสวิชา</th>
                         <th class="is-size-5" style="color:#fff;">ชื่อวิชา</th>
+                        <th class="is-size-5" style="color:#fff;">วัน-เวลา</th>
+                        <th class="is-size-5" style="color:#fff;">ครูผู้สอน</th>
                     </tr>
                     
                         <tr>
-                            <router-link style="color: #fff;" :to="{path: `GradePage`}"><td>06016309</td></router-link>
-                            <td>INFORMATION SYSTEM SECURITY AND IT LAWS</td>
+                            <router-link style="color: #fff;" :to="{path: `GradePage`}"><td>INFORMATION SYSTEM SECURITY AND IT LAWS</td></router-link>
+                            <td>14.00-16.00น.</td>
+                            <td>
+                                ....
+                            </td>
                         </tr>
                 </table>
             </div>
