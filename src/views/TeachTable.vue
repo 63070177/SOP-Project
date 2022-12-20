@@ -71,28 +71,14 @@
                 <div class="block">
                     <table style="width:100%; color: #fff;">
                             <tr>
-                                <th class="is-size-5" style="color: #fff;">รหัสวิชา</th>
                                 <th class="is-size-5" style="color: #fff;">ชื่อวิชา</th>
                                 <th class="is-size-5" style="color: #fff;">วัน-เวลา</th>
-                                <th class="is-size-5" style="color: #fff;">สถานที่</th>
+                                <th class="is-size-5" style="color: #fff;">ครูผู้สอน</th>
                             </tr>
                             <tr>
-                                <td>06016323</td>
                                 <td>SOP</td>
                                 <td>วันพุธ 14.00-16.00 น.</td>
-                                <td>M04 อาคารเทคโนโลยีสารสนเทศ</td>
-                            </tr>
-                            <tr>
-                                <td>06016324</td>
-                                <td>OOP</td>
-                                <td>วันพุธ 14.00-16.00 น.</td>
-                                <td>L207 อาคารเทคโนโลยีสารสนเทศ</td>
-                            </tr>
-                            <tr>
-                                <td>06016325</td>
-                                <td>MIS</td>
-                                <td>วันพุธ 14.00-16.00 น.</td>
-                                <td>M23 อาคารเทคโนโลยีสารสนเทศ</td>
+                                <td>.....</td>
                             </tr>
                     </table>
                 </div>
