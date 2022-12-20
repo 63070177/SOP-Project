@@ -115,8 +115,9 @@
                         </div>
 
                         <div class="column is-12">
+                            <router-link :to="{path:`TeachListSubject`}">
                             <button class="button is-danger is-outlined">ยกเลิก</button>
-                        </div>
+                        </router-link></div>
                     </div>
                 </form>
             </div>
