@@ -53,12 +53,6 @@
                 <form>
                     <div class="block">
                     <div>
-                        <label>รหัสวิชา</label>
-                        <div class="column">
-                            <input type="text" class="input">
-                        </div>
-                    </div>
-                    <div>
                         <label>ชื่อวิชา</label>
                         <div class="column">
                             <input type="text" class="input">
@@ -71,13 +65,7 @@
                         </div>
                     </div>
                     <div>
-                        <label>รับ</label>
-                        <div class="column">
-                            <input type="text" class="input">
-                        </div>
-                    </div>
-                    <div>
-                        <label>รายละเอียดวิชา</label>
+                        <label>ชื่อครูผู้สอน</label>
                         <div class="column">
                             <textarea class="textarea" rows="3"></textarea>
                         </div>
