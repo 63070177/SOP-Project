@@ -4,7 +4,7 @@
             <div class="loginbox">
                 <div style="text-align: center; margin-bottom: 15px;">
                     <img class="logo" src="../assets/register-icon.svg" width="90px" height="90px" />
-                    <h1 style="font-size: 4em;">PAPERWORK</h1>
+                    <h1 style="font-size: 4em;">Hansa School</h1>
                 </div>
                 <div class="column">
                     <div class="input-group form-group">
