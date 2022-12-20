@@ -10,7 +10,7 @@
                 <div class="column">
                     <div class="input-group form-group">
                         <label class="input-group-addon">Email </label>
-                        <input class="formstyle1" type="email" v-model="email" @change="isEmailValid" />
+                        <input class="formstyle1" type="email" v-model="email" />
                         <span v-show="wrongEmail" style="color:red">Incorrect email address</span>
                     </div>
                 </div>
@@ -24,7 +24,6 @@
                     <div class="input-group form-group">
                         <label class="input-group-addon"> Confirm Password </label>
                         <input class="formstylecon" type="password" v-model="confirmpass" />
-                        
                     </div>
                 </div>
                 <div class="column" style="text-align: center;">
@@ -43,11 +42,14 @@ export default {
     name: "SignUp",
     data() {
         return {
-
+            name: "Paper",
+            email: "",
+            password: "",
+            confirmpass: "",
+            wrongEmail: false,
         }
     },
     methods: {
-
     }
 }
 </script>

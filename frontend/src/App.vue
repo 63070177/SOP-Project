@@ -2,8 +2,10 @@
 <template>
   <div id="app">
     <div class="header">
-      <img class="logo" src="./assets/register-icon.svg" width="30px" height="30px" />
-      <h2 style="display: inline-block;">Hansa School</h2>
+      <router-link :to="{ path: `/InfoTeach` }">
+        <img class="logo" src="./assets/register-icon.svg" width="30px" height="30px" />
+        </router-link><h2 style="display: inline-block;">Hansa School</h2>
+      
     </div>
     <router-view :key="$route.fullPath" />
   </div>
@@ -109,21 +111,20 @@ a:hover {
   font-size: 3vh;
 }
 
-.sidebar{
+.sidebar {
   background-color: #000000;
 }
 
-.editInput{
+.editInput {
   margin-bottom: 12px;
 }
 
-.text{
+.text {
   margin-bottom: 20px;
 }
 
-.btn{
+.btn {
   margin-top: 10px;
 }
-
 </style>
 

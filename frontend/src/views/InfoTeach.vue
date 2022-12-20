@@ -20,15 +20,6 @@
                         </router-link>
                     </div>
                     <div class="block">
-                        <router-link :to="{ path: `TeachTable` }">
-                            <button class="button is-black btn">
-                                <img class="logo" src="../assets/table-solid.svg" width="25px" height="25px" />
-                                <span class="sidebar-text">ตารางสอนส่วนตัว</span>
-                            </button>
-                        </router-link>
-
-                    </div>
-                    <div class="block">
                         <router-link :to="{ path: `TeachListSubject` }">
                             <button class="button is-black btn">
                                 <img class="logo" src="../assets/note-sticky-solid.svg" width="25px" height="25px" />
@@ -74,14 +65,14 @@
 
                     <!-- แก้ไขข้อมูลส่วนตัว -->
                     <div class="column is-9" v-if="isEditing">
-                        <input class="input is-small editInput" type="text" v-model="editName">
-                        <input class="input is-small editInput" type="text" v-model="editSurname">
-                        <input class="input is-small editInput" type="date" v-model="editBirth">
-                        <input class="input is-small editInput" type="text" v-model="editAge">
-                        <input class="input is-small editInput" type="text" v-model="editFaculty">
-                        <input class="input is-small editInput" type="text" v-model="editBranch">
-                        <input class="input is-small editInput" type="text" v-model="editAddress">
-                        <input class="input is-small editInput" type="text" v-model="editTel">
+                        <input class="input is-small editInput" type="text" v-model="editName" style="width: 80%;">
+                        <input class="input is-small editInput" type="text" v-model="editSurname" style="width: 80%;">
+                        <input class="input is-small editInput" type="date" v-model="editBirth" style="width: 80%;">
+                        <input class="input is-small editInput" type="text" v-model="editAge" style="width: 80%;">
+                        <input class="input is-small editInput" type="text" v-model="editFaculty" style="width: 80%;">
+                        <input class="input is-small editInput" type="text" v-model="editBranch" style="width: 80%;">
+                        <input class="input is-small editInput" type="text" v-model="editAddress" style="width: 80%;">
+                        <input class="input is-small editInput" type="text" v-model="editTel" style="width: 80%;">
 
                     </div>
 

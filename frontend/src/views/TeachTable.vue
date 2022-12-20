@@ -20,15 +20,6 @@
                         </router-link>
                     </div>
                     <div class="block">
-                        <router-link :to="{ path: `TeachTable` }">
-                            <button class="button is-black btn">
-                                <img class="logo" src="../assets/table-solid.svg" width="25px" height="25px" />
-                                <span class="sidebar-text">ตารางสอนส่วนตัว</span>
-                            </button>
-                        </router-link>
-
-                    </div>
-                    <div class="block">
                         <router-link :to="{ path: `TeachListSubject` }">
                             <button class="button is-black btn">
                                 <img class="logo" src="../assets/note-sticky-solid.svg" width="25px" height="25px" />
@@ -52,21 +43,6 @@
                 </div>
                 <div class="column">
                     <label class="block" style="margin-right: 10px;">ภาคเรียนที่</label>
-                    <div class="select">
-                        <select>
-                            <option selected>----- เลือกภาคเรียน -----</option>
-                            <option value="1">1/2561</option>
-                            <option value="2">2/2561</option>
-                            <option value="3">1/2562</option>
-                            <option value="4">2/2562</option>
-                            <option value="5">1/2563</option>
-                            <option value="6">2/2563</option>
-                            <option value="7">1/2564</option>
-                            <option value="8">2/2564</option>
-                            <option value="9">1/2565</option>
-                            <option value="10">2/2565</option>
-                        </select>
-                    </div>
                 </div>
                 <div class="block">
                     <table style="width:100%; color: #fff;">

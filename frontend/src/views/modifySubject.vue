@@ -20,15 +20,6 @@
                         </router-link>
                     </div>
                     <div class="block">
-                        <router-link :to="{ path: `TeachTable` }">
-                            <button class="button is-black btn">
-                                <img class="logo" src="../assets/table-solid.svg" width="25px" height="25px" />
-                                <span class="sidebar-text">ตารางสอนส่วนตัว</span>
-                            </button>
-                        </router-link>
-
-                    </div>
-                    <div class="block">
                         <router-link :to="{ path: `TeachListSubject` }">
                             <button class="button is-black btn">
                                 <img class="logo" src="../assets/note-sticky-solid.svg" width="25px" height="25px" />
@@ -55,19 +46,19 @@
                         <div>
                             <label>ชื่อวิชา</label>
                             <div class="column">
-                                <input type="text" class="input">
+                                <input type="text" class="input" style="width: 80%;">
                             </div>
                         </div>
                         <div>
                             <label>วันเวลาที่สอน</label>
                             <div class="column">
-                                <input type="text" class="input">
+                                <input type="text" class="input" style="width: 80%;">
                             </div>
                         </div>
                         <div>
                             <label>ชื่อครูผู้สอน</label>
                             <div class="column">
-                                <textarea class="textarea" rows="3"></textarea>
+                                <textarea class="textarea" rows="3" ></textarea>
                             </div>
                         </div>
                     </div>
