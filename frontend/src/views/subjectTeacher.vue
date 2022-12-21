@@ -54,16 +54,20 @@
                 </div>
                 <div class="block">
                     <table style="width:80%; color: #fff;">
+                        
                         <tr>
                             <th class="is-size-5" style="color: #fff;"></th>
                             <th class="is-size-5" style="color: #fff;">ชื่อวิชา</th>
-                            <th class="is-size-5" style="color: #fff;">วัน-เวลา</th>
+                            <th class="is-size-5" style="color: #fff;">ชั่วโมงเรียน</th>
                             <th class="is-size-5" style="color: #fff;">ครูผู้สอน</th>
                         </tr>
-                        <tr v-if="!showForm">
+                        <tbody v-for="subjects in Subject" :key="subjects._id">
+                        <tr v-if="!showForm" style="margin-bottom: 20px;">
+
                             <td>
-                                    <button type="modify" class="button is-primary is-outlined"
-                                        style="margin-right: 15px;" @click="showForm = true;">
+                                <div >
+                                    <button type="modify" class="button is-primary is-outlined is-small" 
+                                        style="margin-right: 15px;" @click="EditForm(subjects)">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
                                             <path
@@ -71,7 +75,7 @@
                                         </svg>
                                         แก้ไข
                                     </button>
-                                    <button type="modify" class="button is-danger is-outlined">
+                                    <button type="modify" class="button is-danger is-outlined is-small">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
                                             <path
@@ -79,16 +83,27 @@
                                         </svg>
                                         ลบ
                                     </button>
+                                </div>
                             </td>
-                            <td>SOP</td>
-                            <td>วันจันทร์ 14.00-16.00 น.</td>
-                            <td>...</td>
+                            <td class="is-size-5">
+                                {{ subjects.subjectName }}
+                            </td>
+                            <td class="is-size-5">
+                            {{ subjects.periodTime }}
+                            </td>
+                            <td class="is-size-5">
+                                {{ subjects.teacherName }}
+                            </td>
+
                         </tr>
+                        </tbody>
+
                         <tr v-if="showForm">
                             <td>
                                 <div class="columns">
                                     <div class="column">
-                                        <button class="button is-primary is-outlined" v-if="showForm">ตกลง</button>
+                                        <button class="button is-primary is-outlined"
+                                            @click="EditSubject()">ตกลง</button>
 
                                     </div>
 
@@ -99,16 +114,18 @@
                                 </div>
                             </td>
                             <td>
-                                <input class="input is-small" type="text" style="width:80%;">
+                                <input class="input is-small" type="text" style="width:80%;" v-model="EditSubjectName">
                             </td>
                             <td>
-                                <input class="input is-small" type="text" style="width:80%;">
+                                <input class="input is-small" type="text" style="width:80%;" v-model="EditTime">
                             </td>
                             <td>
-                                <input class="input is-small" type="text" style="width:80%;">
+                                <input class="input is-small" type="text" style="width:80%;" v-model="EditTeacher">
                             </td>
                         </tr>
                     </table>
+
+                    
                 </div>
             </div>
         </div>
@@ -116,15 +133,84 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
     name: "subjectTeacher",
     data() {
         return {
             showForm: false,
+            Subject: [],
+            Teacher: [],
+            EditSubjectName: "",
+            EditTime: null,
+            EditTeacher: "",
+            subjectId: ""
         }
     },
-    methods: {
+    mounted() {
+        this.email = localStorage.getItem("email")
+        
+        axios.post('http://localhost:8084/teachers/getTeacher', {email:this.email})
+        .then((response) => {
+            console.log(response.data);
+            this.Teacher = response.data[0];
+        })
+        .catch((response) => {
+            console.log(response);
+        })
 
+
+        let teacher = localStorage.getItem("Teacher")
+        let obj = JSON.parse(teacher)
+
+        axios.post('http://localhost:8081/subjects/getSubjects', {teacherId: obj._id})
+        .then((response) => {
+            console.log(response.data);
+            this.Subject = response.data;
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+
+    },
+    methods: {
+        EditForm(subject) {
+            this.showForm = true;
+            this.subjectId = subject._id
+            this.EditSubjectName = subject.subjectName;
+            this.EditTime = subject.periodTime;
+            this.EditTeacher = subject.teacherName;
+        },
+        EditSubject() {
+            let teacher = localStorage.getItem("Teacher")
+            let obj = JSON.parse(teacher)
+
+            const data = {
+                _id: this.subjectId,
+                subjectName: this.EditSubjectName,
+                periodTime: this.EditTime,
+                teacherName: this.EditTeacher,
+                teacherId: obj._id
+            }
+            axios.put('http://localhost:8081/subjects', data)
+            .then((response) => {
+                console.log(response.data);
+                //this.Subject.
+            }).catch((err) => {
+                console.log(err);
+            });
+            this.showForm = false;
+        }
     }
+    /*
+    
+    */
 }
 </script>
+
+<style>
+    th,td{
+        padding: 15px;
+        border-bottom: 1px solid #ddd;
+    }
+</style>

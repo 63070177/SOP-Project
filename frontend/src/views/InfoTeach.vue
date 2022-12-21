@@ -28,12 +28,12 @@
                         </router-link>
                     </div>
                     <div class="block">
-                        <router-link to="/">
+                        <!-- <router-link to="/"> -->
                             <button class="button is-black btn">
                                 <img class="logo" src="../assets/right-from-bracket-solid.svg" width="25px"
                                     height="25px" />
-                                <span class="sidebar-text">ออกจากระบบ</span>
-                            </button></router-link>
+                                <span  @click="signout" class="sidebar-text">ออกจากระบบ</span>
+                            </button><!-- </router-link> -->
                     </div>
                 </div>
             </div>
@@ -42,35 +42,26 @@
                 <div class="columns">
                     <div class="column">
                         <p class="text">ชื่อ</p>
-                        <p class="text">นามสกุล</p>
                         <p class="text">วัน เดือน ปีเกิด</p>
                         <p class="text">อายุ</p>
-                        <p class="text">คณะ</p>
-                        <p class="text">สาขา</p>
                         <p class="text">ที่อยู่</p>
                         <p class="text">เบอร์โทรศัพท์</p>
                     </div>
 
                     <!-- ข้อมูลส่วนตัว -->
                     <div class="column is-9" v-if="!isEditing">
-                        <p class="text">นายกระดาษ</p>
-                        <p class="text">ดินสอ</p>
-                        <p class="text">00 00 00</p>
-                        <p class="text">21 ปี</p>
-                        <p class="text">เทคโนโลยีสารสนเทศ</p>
-                        <p class="text">เทคโนโลยีสารสนเทศ</p>
-                        <p class="text">...</p>
-                        <p class="text">0123456789</p>
+                        <p class="text">{{ this.Teacher.name }}</p>
+                        <p class="text">{{ this.Teacher.birth }}</p>
+                        <p class="text">{{ this.Teacher.age }} ปี</p>
+                        <p class="text">{{ this.Teacher.address }}</p>
+                        <p class="text">{{ this.Teacher.phone }}</p>
                     </div>
 
                     <!-- แก้ไขข้อมูลส่วนตัว -->
                     <div class="column is-9" v-if="isEditing">
                         <input class="input is-small editInput" type="text" v-model="editName" style="width: 80%;">
-                        <input class="input is-small editInput" type="text" v-model="editSurname" style="width: 80%;">
                         <input class="input is-small editInput" type="date" v-model="editBirth" style="width: 80%;">
                         <input class="input is-small editInput" type="text" v-model="editAge" style="width: 80%;">
-                        <input class="input is-small editInput" type="text" v-model="editFaculty" style="width: 80%;">
-                        <input class="input is-small editInput" type="text" v-model="editBranch" style="width: 80%;">
                         <input class="input is-small editInput" type="text" v-model="editAddress" style="width: 80%;">
                         <input class="input is-small editInput" type="text" v-model="editTel" style="width: 80%;">
 
@@ -78,10 +69,10 @@
 
                 </div>
                 <button class="button is-link is-outlined" v-if="!isEditing"
-                    @click="isEditing = true;">แก้ไขข้อมูล</button>
+                    @click="editInfo">แก้ไขข้อมูล</button>
                 <div class="columns">
                     <div class="column">
-                        <button class="button is-primary is-outlined" v-if="isEditing">ตกลง</button>
+                        <button @click="editTeacher" class="button is-primary is-outlined" v-if="isEditing">ตกลง</button>
 
                     </div>
 
@@ -98,25 +89,93 @@
 </template>
 
 <script>
+import firebase from "firebase";
+import axios from 'axios';
 export default {
     name: "InfoTeach",
+    beforeCreate() {
+        firebase.auth().onAuthStateChanged((user) => {
+            if (!user) {
+                this.$router.push("/")
+            }
+        });
+    },
     data() {
         return {
             name: "Paper",
+
+            Teacher: [],
+
             editName: "",
-            editSurname: "",
-            editCode: "",
             editBirth: "",
             editAge: "",
-            editFaculty: "",
-            editBranch: "",
             editAddress: "",
-            editYear: "",
             editTel: "",
             isEditing: false,
+
+            email: ''
         }
     },
+
+    mounted(){
+        this.email = localStorage.getItem("email")
+        
+        axios.post('http://localhost:8084/teachers/getTeacher', {email:this.email})
+        .then((response) => {
+            console.log(response.data);
+            this.Teacher = response.data[0];
+            const myJSON = JSON.stringify(this.Teacher);
+            localStorage.setItem("Teacher", myJSON);
+        })
+        .catch((response) => {
+            console.log(response);
+        })
+        
+    },
     methods: {
+        signout() {
+            firebase
+            .auth()
+            .signOut()
+            .then( ()=> {
+                this.$router.replace("LogInPage");
+                localStorage.removeItem("email")
+            })
+        },
+        editInfo(){
+            this.isEditing = true;
+            this.editName = this.Teacher.name;
+            this.editBirth = this.Teacher.birth;
+            this.editAge = this.Teacher.age;
+            this.editAddress = this.Teacher.address;
+            this.editTel = this.Teacher.phone; 
+        },
+        editTeacher() {
+            const data = {
+                _id: this.Teacher._id,
+                name: this.editName,
+                age: this.editAge,
+                birth: this.editBirth,
+                address: this.editAddress,
+                phone: this.editTel,
+                email: this.email
+            }
+            axios.put('http://localhost:8084/teachers', data)
+            .then((response) => {
+                console.log(response.data);
+                this.Teacher.name = this.editName
+                this.Teacher.birth = this.editBirth
+                this.Teacher.age = this.editAge
+                this.Teacher.address = this.editAddress
+                this.Teacher.phone = this.editTel
+            })
+            .catch((response) => {
+                console.log(response);
+                alert("Wrong email or password")
+            })
+            this.isEditing = false;
+
+        }
     }
 }
 </script>

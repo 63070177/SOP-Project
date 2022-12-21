@@ -14,10 +14,19 @@
 <script>
 export default {
   name: "App",
+  data() {
+    return {
+      email: ""
+    }
+  },
 };
 </script>
 
 <style>
+
+template{
+  height: 100%;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

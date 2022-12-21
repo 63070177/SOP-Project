@@ -40,57 +40,25 @@
             <div class="column is-9">
                 <form>
                     <div class="block is-size-3">
-                        <h2>วิชา XXXXXX</h2>
+                        <h2>{{ subjectName }}</h2>
                     </div>
                     <div class="block">
                         <table style="width:100%; color: #fff;">
                             <tr>
-                                <th class="is-size-5" style="color: #fff;">รหัสนักศึกษา</th>
                                 <th class="is-size-5" style="color: #fff;">ชื่อ-นามสกุล</th>
+                                <th class="is-size-5" style="color: #fff;">ห้อง</th>
                                 <th class="is-size-5" style="color: #fff;">เกรด</th>
                             </tr>
-                            <tr>
-                                <td>63070148</td>
-                                <td>รวิพร สมอฤทธิ์</td>
+                            <tr v-for="(student, index) in Student" :key="student._id">
+                                <td>{{student.student_name}}</td>
+                                <td>{{student.student_class}}</td>
                                 <td>
                                     <div class="select is-small">
                                         <select>
-                                            <option>Select Grade</option>
+                                            <option>{{ Grade[index].grade }}</option>
                                             <option>A</option>
                                             <option>B</option>
-                                            <option>c</option>
-                                            <option>D</option>
-                                            <option>F</option>
-                                        </select>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>63070177</td>
-                                <td>สุพิชญา ทำสุนา</td>
-                                <td>
-                                    <div class="select is-small">
-                                        <select>
-                                            <option>Select Grade</option>
-                                            <option>A</option>
-                                            <option>B</option>
-                                            <option>c</option>
-                                            <option>D</option>
-                                            <option>F</option>
-                                        </select>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>63070559</td>
-                                <td>อ่นกก กรนนไบ</td>
-                                <td>
-                                    <div class="select is-small">
-                                        <select>
-                                            <option>Select Grade</option>
-                                            <option>A</option>
-                                            <option>B</option>
-                                            <option>c</option>
+                                            <option>C</option>
                                             <option>D</option>
                                             <option>F</option>
                                         </select>
@@ -117,12 +85,36 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
     name: "GradePage",
     data() {
         return {
-
+            subjectName: this.$route.params.subjectname,
+            Student: [],
+            Grade: [],
+            selected: ''
         }
+    },
+    mounted(){
+        axios.get('http://localhost:8083/students')
+        .then((response) => {
+            console.log(response.data);
+            this.Student = response.data;
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+        
+        axios.post('http://localhost:8082/grades/getGrades', {subjectName: this.subjectName})
+        .then((response) => {
+            console.log(response.data);
+            this.Grade = response.data;
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+        
     },
     methods: {
 

@@ -46,16 +46,19 @@
                 </div>
                 <div class="block">
                     <table style="width:100%; color: #fff;">
+                        <thead>
                             <tr>
                                 <th class="is-size-5" style="color: #fff;">ชื่อวิชา</th>
                                 <th class="is-size-5" style="color: #fff;">วัน-เวลา</th>
                                 <th class="is-size-5" style="color: #fff;">ครูผู้สอน</th>
                             </tr>
-                            <tr>
-                                <td>SOP</td>
-                                <td>วันพุธ 14.00-16.00 น.</td>
-                                <td>.....</td>
+                            
+                            <tr v-for="subjects in Subject" :key="subjects._id">
+                                <td>{{subjects.subjectName}}</td>
+                                <td>{{subjects.periodTime}}</td>
+                                <td>{{subjects.teacherName}}</td>
                             </tr>
+                        </thead>
                     </table>
                 </div>
             </div>
@@ -64,12 +67,23 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
     name: "TeachTable",
     data() {
         return {
-
+            Subject: [],
         }
+    },
+    mounted(){
+        axios.get('http://localhost:8081/subjects/getSubjects')
+        .then((response) => {
+            console.log(response.data);
+            this.Subject = response.data;
+        })
+        .catch((error) => {
+            console.log(error);
+        })
     },
     methods: {
 

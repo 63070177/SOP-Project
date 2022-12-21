@@ -46,25 +46,19 @@
                         <div>
                             <label>ชื่อวิชา</label>
                             <div class="column">
-                                <input type="text" class="input" style="width: 80%;">
+                                <input type="text" class="input" style="width: 80%;" v-model="subjectName">
                             </div>
                         </div>
                         <div>
-                            <label>วันเวลาที่สอน</label>
+                            <label>ชั่วโมงเรียน</label>
                             <div class="column">
-                                <input type="text" class="input" style="width: 80%;">
-                            </div>
-                        </div>
-                        <div>
-                            <label>ชื่อครูผู้สอน</label>
-                            <div class="column">
-                                <textarea class="textarea" rows="3" ></textarea>
+                                <input type="text" class="input" style="width: 80%;" v-model="periodTime">
                             </div>
                         </div>
                     </div>
                     <div class="columns">
                         <div class="column">
-                            <button class="button is-primary is-outlined">ตกลง</button>
+                            <button @click="CreateSubject()" class="button is-primary is-outlined">ตกลง</button>
 
                         </div>
 
@@ -81,15 +75,30 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
     name: "modifySubject",
     data() {
         return {
-
+            subjectName: "",
+            periodTime: null,
+            teacherName: ""
         }
     },
     methods: {
-
+        CreateSubject(){
+            const data = {
+                subjectName: this.subjectName,
+                periodTime: Number(this.periodTime),
+            }
+            console.log(data);
+            axios.post('http://localhost:8081/subjects', data).then((response) => {
+                console.log('created', response)
+                this.$route.push({path: "/subjectTeacher"});
+            }).catch((err) => {
+                console.log(err)
+            })
+        }
     }
 }
 </script>

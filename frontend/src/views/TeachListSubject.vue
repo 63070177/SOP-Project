@@ -42,15 +42,15 @@
                 <table style="width:100%; color: #fff;">
                     <tr>
                         <th class="is-size-5" style="color:#fff;">ชื่อวิชา</th>
-                        <th class="is-size-5" style="color:#fff;">วัน-เวลา</th>
+                        <th class="is-size-5" style="color:#fff;">ชั่วโมงเรียน</th>
                         <th class="is-size-5" style="color:#fff;">ครูผู้สอน</th>
                     </tr>
                     
-                        <tr>
-                            <router-link style="color: #fff;" :to="{path: `GradePage`}"><td>INFORMATION SYSTEM SECURITY AND IT LAWS</td></router-link>
-                            <td>14.00-16.00น.</td>
+                        <tr v-for="subjects in Subject" :key="subjects.id">
+                            <td><router-link style="color: #fff;" :to="{name: `GradePage`, params: {subjectname : subjects.subjectName}}">{{ subjects.subjectName }}</router-link></td>
+                            <td>{{subjects.periodTime}}</td>
                             <td>
-                                ....
+                                {{subjects.teacherName}}
                             </td>
                         </tr>
                 </table>
@@ -60,10 +60,26 @@
 </template>
 
 <script>
+import axios from 'axios';
     export default {
     name: "TeachListSubject",
     data() {
-        return {};
+        return {
+            Subject: [],
+        };
+    },
+    mounted(){
+        let teacher = localStorage.getItem("Teacher")
+        let obj = JSON.parse(teacher)
+
+        axios.post('http://localhost:8081/subjects/getSubjects', {teacherId: obj._id})
+        .then((response) => {
+            console.log(response.data);
+            this.Subject = response.data;
+        })
+        .catch((error) => {
+            console.log(error);
+        })
     },
     methods: {},
 }
