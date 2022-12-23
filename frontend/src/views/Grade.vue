@@ -73,12 +73,6 @@
                                     </button>
                                 </td>
 
-                                <td v-if="!isEditing && Grade[index].grade == ''">
-                                    <button @click="editAddForm(student._id, index)"
-                                        class="button is-success is-outlined">เพิ่มเกรด
-                                    </button>
-                                </td>
-
                             </tr>
                         </table>
 
@@ -213,7 +207,7 @@ export default {
                 
                 
 
-                this.isEditing = true;
+                this.isEditing = false;
             })
             .catch((error) => {
                 console.log(error);
@@ -224,22 +218,6 @@ export default {
             this.selectStuId = student
             this.row = row;
         },
-        addGrade(){
-            const addData = {
-                grade: this.selected,
-                studentId: this.selectStuId,
-                subjectName: this.subjectName
-            }
-            console.log(addData)
-            axios.post("http://localhost:8082/grades", addData)
-            .then((response) => {
-                console.log(response.data);
-                this.isEditing = true;
-            })
-            .catch((error) => {
-                console.log(error);
-            })
-        }
     }
 }
 </script>
